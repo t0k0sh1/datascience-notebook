@@ -47,6 +47,7 @@ RUN conda install --quiet --yes \
   'xlrd' \
   'missingno' \
   'pandas-profiling' \
+  'pandas-datareader' \
   && \
   conda clean --all -f -y && \
   # Activate ipywidgets extension in the environment that runs the notebook server
@@ -58,6 +59,10 @@ RUN conda install --quiet --yes \
   jupyter labextension install @bokeh/jupyter_bokeh@^2.0.0 --no-build && \
   jupyter labextension install jupyter-matplotlib@^0.7.2 --no-build && \
   jupyter labextension install @lckr/jupyterlab_variableinspector && \
+  pip install jupyter-lsp && \
+  conda install -c conda-forge nodejs && \
+  jupyter labextension install @krassowski/jupyterlab-lsp && \
+  conda install -c conda-forge python-language-server r-languageserver && \
   jupyter lab build && \
   jupyter lab clean && \
   npm cache clean --force && \
